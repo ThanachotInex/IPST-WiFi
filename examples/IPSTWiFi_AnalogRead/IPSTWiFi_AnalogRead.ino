@@ -1,14 +1,23 @@
 #include <IPSTWiFi.h>
-IPSTWiFi w;
+
+IPSTWiFi ipstw;             // Create IPST-WiFi object
+const int analogPin = 34;   // ADC pin to read analog input
 
 void setup() {
-    Serial.begin(115200);
-    w.begin(); // เริ่มต้นการทำงานของไลบรารี
+    Serial.begin(115200);   // Initialize serial communication at 115200 baud
+    ipstw.begin();          // Initialize IPST-WiFi board
+    Serial.print("Reading from analog pin: ");
+    Serial.println(analogPin);
 }
 
 void loop() {
-    int analogValue = w.analogRead(34); // อ่านค่าจากพิน 33
-    Serial.print("Analog Value (34): ");
-    Serial.println(analogValue); // แสดงผลค่าที่อ่านได้
-    delay(500); // หน่วงเวลา 500 มิลลิวินาที
+    int analogValue = ipstw.analogRead(analogPin); // Read the analog value from the specified pin
+
+    // Print the result to the Serial Monitor
+    Serial.print("Analog Value : ");
+    Serial.println(analogPin);
+    Serial.println(analogValue);
+
+    // Wait 500 ms before the next reading
+    delay(500); 
 }
