@@ -1,17 +1,20 @@
 #include <IPSTWiFi.h>
-IPSTWiFi w;
+
+IPSTWiFi ipstw;
+#define BUTTON_PIN 0  // Digital pin connected to the button
 
 void setup() {
-    Serial.begin(115200);
-    w.begin(); // เริ่มต้นการทำงานของไลบรารี
+  Serial.begin(115200);
+  ipstw.begin();  // Initialize IPST-WiFi library
 }
 
 void loop() {
-    int buttonState = w.digitalRead(5); // อ่านค่าจากพินดิจิทัล 5
-    if (buttonState == LOW) {
-        Serial.println("Button is pressed!");
-    } else {
-        Serial.println("Button is not pressed.");
-    }
-    delay(500); // หน่วงเวลา 500 มิลลิวินาที
+  int buttonState = ipstw.digitalRead(BUTTON_PIN);  // Read the current button state
+
+  if (buttonState == LOW) {
+    Serial.println("Button is pressed!");
+  } else {
+    Serial.println("Button is not pressed.");
+  }
+  delay(500);  // Wait 0.5 second
 }
