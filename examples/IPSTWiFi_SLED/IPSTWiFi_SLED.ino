@@ -1,20 +1,24 @@
 #include <IPSTWiFi.h>
 
-IPSTWiFi w;
+IPSTWiFi ipstw; // Create IPST-WiFi object
 
 void setup() {
-    w.begin();
+    ipstw.begin();  // Initialize IPST-WiFi board
 }
 
 void loop() {
-    w.sled(0, 255, 0, 0);  // Set the first LED (index 0) to red (RGB: 255, 0, 0)
-    delay(1000);          
-    w.sled(1, 0, 255, 0);  // Set the second LED (index 1) to green (RGB: 0, 255, 0)
-    delay(1000);       
-    w.sled(2, 0, 0, 255);  // Set the third LED (index 2) to blue (RGB: 0, 0, 255)
-    delay(1000);            
-    w.sledFill(255, 255, 255);  // Set all LEDs to white (RGB: 255, 255, 255)
-    delay(1000);                // Wait for 1 second
-    w.sledClear(); // Set all LEDs to black
+    ipstw.sled(0, 255, 0, 0);  // LED 0 -> Red
+    delay(1000);     
+
+    ipstw.sled(1, 0, 255, 0);  // LED 1 -> Green
+    delay(1000); 
+
+    ipstw.sled(2, 0, 0, 255);  // LED 2 -> Blue
+    delay(1000);
+
+    ipstw.sledFill(255, 255, 255); // All LEDs -> White
+    delay(1000);    
+
+    ipstw.sledClear();         // All LEDs -> Off
     delay(1000);    
 }
