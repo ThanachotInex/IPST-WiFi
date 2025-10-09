@@ -1,32 +1,33 @@
 #include <IPSTWiFi.h>
-IPSTWiFi w;
 
-#define LED_PIN 5     // Digital Output
-#define PWM_PIN 19      // PWM Output
+IPSTWiFi ipstw;
+
+#define LED_PIN 5    // Digital output pin for LED
+#define PWM_PIN 19   // PWM output pin for LED
 
 void setup() {
     Serial.begin(115200);
-    w.begin(); // เริ่มต้นการทำงานของไลบรารี
+    ipstw.begin(); // Initialize IPST-WiFi library
 }
 
 void loop() {
-    // Digital Output: เปิด LED (HIGH)
-    w.digitalWrite(LED_PIN, HIGH);
+     // Turn LED ON
+    ipstw.digitalWrite(LED_PIN, HIGH);
     delay(1000);
 
-    // Digital Output: ปิด LED (LOW)
-    w.digitalWrite(LED_PIN, LOW);
+    // Turn LED OFF
+    ipstw.digitalWrite(LED_PIN, LOW);
     delay(1000);
 
-    // PWM Output: เพิ่มค่าความสว่าง
+    // PWM Output: Fade In
     for (int i = 0; i <= 255; i += 5) {
-        w.analogWrite(PWM_PIN, i);
+        ipstw.analogWrite(PWM_PIN, i);
         delay(50);
     }
 
-    // PWM Output: ลดค่าความสว่าง
+    // PWM Output: Fade Out
     for (int i = 255; i >= 0; i -= 5) {
-        w.analogWrite(PWM_PIN, i);
+        ipstw.analogWrite(PWM_PIN, i);
         delay(50);
     }
 }
